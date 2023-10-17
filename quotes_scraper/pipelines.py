@@ -6,8 +6,21 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
+import json
 
 
 class QuotesScraperPipeline:
     def process_item(self, item, spider):
         return item
+
+class QuotesToJsonPipeline:
+    def __init__(self):
+        self.file = open('quotes.json', 'w')
+
+    def process_item(self, item, spider):
+        line = json.dumps(dict(item)) + "\n"
+        self.file.write(line)
+        return item
+
+    def close_spider(self, spider):
+        self.file.close()
