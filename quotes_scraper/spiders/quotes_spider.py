@@ -1,5 +1,5 @@
 import scrapy
-
+from quotes_scraper.items import QuotesScraperItem
 
 class QuotesSpiderSpider(scrapy.Spider):
     name = "quotes_spider"
@@ -8,7 +8,7 @@ class QuotesSpiderSpider(scrapy.Spider):
 
     def parse(self, response):
         for quote in response.css("div.quote"):
-            yield {
-                "text": quote.css("span.text::text").get(),
-                "author": quote.css("span small::text").get(),
-            }
+            item = QuotesScraperItem()
+            item["text"] = quote.css("span.text::text").get()
+            item["author"] = quote.css("span small::text").get()
+            yield item
