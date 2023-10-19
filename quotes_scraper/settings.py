@@ -12,6 +12,9 @@ BOT_NAME = "quotes_scraper"
 SPIDER_MODULES = ["quotes_scraper.spiders"]
 NEWSPIDER_MODULE = "quotes_scraper.spiders"
 
+# 限制爬取資料數量
+CLOSESPIDER_PAGECOUNT = 3
+CLOSESPIDER_ITEMCOUNT = 10
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "quotes_scraper (+http://www.yourdomain.com)"
